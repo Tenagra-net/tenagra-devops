@@ -8,7 +8,8 @@ RUN apt-get update && \
     apt-get install -y curl git gnupg python3 python3-pip software-properties-common wget
 
 # Install Ansible
-RUN python3 -m pip install ansible
+RUN python3 -m pip install ansible && \
+    apt-get install -y sshpass
 
 # Install Terraform / Packer / Vault / Consul
 RUN wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg

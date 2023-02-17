@@ -4,7 +4,7 @@ services:
     build: ./toolkit
     stdin_open: true
     tty: true
-    hostname: TenagraTDK
+    hostname: TDKShell
     working_dir: /source
     volumes:
       - ../source:/source
@@ -14,9 +14,15 @@ services:
     build: ./webserver
     volumes:
       - ../source:/source
+      - ../source:/var/www/html
+    ports:
+      - 80:80
   tftpserver:
     profiles:
       - tftpserver
     build: ./tftpserver
     volumes:
       - ../source:/source
+    ports:
+      - 69:69
+      - 69:69/udp

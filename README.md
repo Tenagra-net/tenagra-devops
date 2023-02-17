@@ -1,62 +1,42 @@
-# Tenagra DevOps Toolkit.
+# DevOps Toolkit.
 
 ---
 
-The Tenagra DevOps Toolkit (TDK) is a toolchain that includes everything needed to bootstrap and develop a production
-environment according to the design principals and standards of Tenagra.net.
+The DevOps Toolkit (TDK) is a toolchain that includes everything needed to bootstrap and develop a production
+environmen.
 
-### Running Structure:
-The TDK uses an environment running in docker. Docker Compose
+## Quick Start
 
+### Prerequisites
 
+- Git (https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- Docker (https://docs.docker.com/engine/install/)
+- Powershell (Windows) or Bash (Linux / MacOS)
 
+### Running
 
+1. Clone this repository: `git clone <git repo url>`
+2. Enter the repo directory: `cd tenagra-devops`
+3. Verify the build script (`build.sh` or `build.ps1`) is executable.
+4. Run the executable `./build`
 
+After running the build script, it will drop you into a development shell. To verify this you should see:
 
+```bash
+root@TDKShell:/source#
+```
 
+### Options
 
-### Tools Included:
+The build script has several options that enable and disable certain features:
 
-- Ansible
-- Terraform
-- Packer
-- Git
-- Repo
-
-### Optional Extras
-
-- NGINX HTTP Server (Used to serve static files / hardware images)
-- TFTP Server (Used for hardware images)
-- DNS Server (Bootstrapping)
-- DHCP Server (Bootstrapping)
-
-> network - dns/dhcp pxe shid
-> tftpserver - tftp server
-> toolkit - the dev cli/ide
-> webserver - nginx http server
+> - If you are using Powershell, prefix your option with `-` (IE: `noshell` -> `-noshell`)
+> - If you are using Bash, prefix your option with `--` (IE: `noshell` -> `--noshell`)
 
 
----
-
-## Getting Started
-
-### Prerequisites:
-
-You must have the following installed / prepared to use this toolchain:
-
-- `docker` (https://docs.docker.com/engine/install/)
-- `docker-compose` (https://docs.docker.com/compose/install/)
-
-### Setup
-
-#### Windows
-
-poop
-
-#### Linux / MacOS
-
-Poop as well.
-
----
-
-## Repo Structure
+| Option    | Description                                                               |
+|-----------|---------------------------------------------------------------------------|
+| `noshell` | Starts up the services in the background, does not open foreground shell. |
+| `http`    | Starts up an NGINX instance, used as an image/config source.              |
+| `tftp`    | Starts up a HPA TFTP instance, used as an image/config source.            |
+| `dnsmasq` | Starts a DNSMASQ instance. Used for bootstrapping.                        |
